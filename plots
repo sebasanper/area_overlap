@@ -1,0 +1,40 @@
+plot 'horns_rev_numbers.dat' u ($2+100):($3+100):1 w labels, 'horns_rev_numbers.dat' u 2:3 lc rgb 'red'
+
+## From 0, positive numbers.
+plot 'horns_rev_numbers.dat' u ($2-423974):($3-6147540) lc rgb 'red', 'horns_rev_numbers.dat' u ($2-423974+100):($3-6147540+100):1 w labels
+plot 'horns_rev.dat' u ($1-423974):($2-6147540)
+
+
+Turbines color according to in or out wake
+
+plot 'draw_horns_rev.dat' u 2:($4==1?$3:1/0) pt 7 ps 3 lc rgb 'red', 'draw_horns_rev.dat' u 2:($4==0?$3:1/0) pt 7 ps 3  lc rgb 'green', 'draw_horns_rev.dat' u 2:($4==2?$3:1/0) pt 7 ps 3  lc rgb "black", 'draw_horns_rev.dat' u ($2):($3):1 w labels
+
+plot 'draw_horns_rev_eddy.dat' u 2:($4==1?$3:1/0) pt 7 ps 3 lc rgb 'red', 'draw_horns_rev_eddy.dat' u 2:($4==0?$3:1/0) pt 7 ps 3  lc rgb 'green', 'draw_horns_rev_eddy.dat' u 2:($4==2?$3:1/0) pt 7 ps 3  lc rgb "black", 'draw_horns_rev_eddy.dat' u ($2):($3):1 w labels
+
+
+$$$$$$ Plots speed seen at each turbine depending on direction, with numbers $$$$$$$$$$$$$
+plot 'final_speed.dat' u 2:3:5 every :::107::107 w image, 'horns_rev_numbers.dat' u ($2+100):($3+100):1 w labels, 'horns_rev_numbers.dat' u 2:3 lc rgb 'red'
+
+$$$$$$ Plots affected turbines by turbine and direction $$$$$$
+plot 'draw_horns_rev.dat' u 2:($4==1?$3:1/0) every :::4::4 pt 7 ps 3 lc rgb 'red', 'draw_horns_rev.dat' u 2:($4==0?$3:1/0) every :::4::4  pt 7 ps 3  lc rgb 'green', 'draw_horns_rev.dat' u 2:($4==2?$3:1/0)  every :::4::4 pt 7 ps 3  lc rgb "black", 'draw_horns_rev.dat' u ($2):($3):1  every :::4::4 w labels
+
+&& To plot power of each turbine at one direction with numbers &&
+plot 'final_speed_precise.dat' u 2:3:7 every :::6::6 w image, 'horns_rev_numbers.dat' u ($2+100):($3+100):1 w labels, 'horns_rev_numbers.dat' u 2:3 lc rgb 'red'
+
+plot 'final_speed_eddy.dat' u 2:3:7 every :::6::6 w image, 'optimised.dat' u 2:3 lc rgb 'red'
+
+####### To compare directions efficiencies between models.
+plot 'area_overlap/direction_efficiency.dat' w lp, 'eddy_viscosity/direction_efficiency_eddy.dat' w lp lc rgb 'blue'
+
+plot 'area_overlap/turb_data.dat' w lp, 'eddy_viscosity/turb_data_eddy.dat' w lp lc rgb 'blue'
+
+$$$$ Compare eddy simple viscosity and jensen after merging.
+plot 'both.dat' u 1:2:(abs($3-$6)) w image, 'both.dat' u 1:(-$2):(abs($3-$6)) w image
+
+
+plot 'turb1_ainslie.dat' w l lc rgb 'blue', '../area_overlap/turb1_jensen.dat' w l lc rgb 'black', '../larsenEWTS2/turb1_larsen.dat' w l lc rgb 'orange'
+
+
+plot 'turb17_ainslie.dat' w l lc rgb 'blue', '../area_overlap/turb17_jensen.dat' w l lc rgb 'black', '../larsenEWTS2/turb17_larsen.dat' w l lc rgb 'orange'
+
+

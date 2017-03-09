@@ -1,0 +1,12 @@
+z = load('final_speed.dat')
+for i=1:8
+for j=1:10
+k=8*(j-1)+i;
+x(i,j)=z(k,2);
+y(i,j)=z(k,3);
+fi(i,j)=z(k,7);
+end
+end
+surf(x,y,fi)
+view(0,90)
+shading interp
