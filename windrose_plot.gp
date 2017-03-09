@@ -1,4 +1,4 @@
-reset
+reset 
 unset border
 set polar
 set angles degrees #set gnuplot on degrees instead of radians
