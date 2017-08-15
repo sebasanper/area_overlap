@@ -16,9 +16,9 @@ class AreaWan:
         if d <= abs(r2 - r1):
             return 1.0
         elif abs(r2 - r1) < d < abs(r1 + r2):
-            a1 = 2.0 * acos((r1**2 + d**2 - r2**2)/(2.0 * r1 * d))
-            a2 = 2.0 * acos((r2**2 + d**2 - r1**2)/(2.0 * r2 * d))
-            return (0.5 * r1**2. * (a1 - sin(a1)) + 0.5 * r2**2 * (a2 - sin(a2)))/(pi * r1**2)
+            a1 = 2.0 * acos((r1 ** 2 + d ** 2 - r2 ** 2)/(2.0 * r1 * d))
+            a2 = 2.0 * acos((r2 ** 2 + d ** 2 - r1 ** 2)/(2.0 * r2 * d))
+            return (0.5 * r1 ** 2. * (a1 - sin(a1)) + 0.5 * r2 ** 2 * (a2 - sin(a2)))/(pi * r1 ** 2)
         else:
             return 0.0
 
@@ -32,10 +32,11 @@ class AreaReal:
         r = self.r
         R = self.R
         d = self.d
+        print r, R, d
         if d <= abs(r - R):
             return 1.0
-        elif abs(r - R) < d < abs(r + R):
-            return (r**2 * acos((d**2 + r**2 - R**2)/(2.0 * d * r)) + R**2 * acos((d**2 + R**2 - r**2)/(2.0 * d * R)) - 0.5 * sqrt((-d + r + R) * (d + r - R) * (d - r + R) * (d + r + R)))/(pi * r**2)
+        elif abs(r - R) < d and d < abs(r + R):  # "and" is very important to have.
+            return (r ** 2 * acos((d ** 2 + r ** 2 - R ** 2)/(2.0 * d * r)) + R ** 2 * acos((d ** 2 + R ** 2 - r ** 2)/(2.0 * d * R)) - 0.5 * sqrt((- d + r + R) * (d + r - R) * (d - r + R) * (d + r + R)))/(pi * r ** 2)
         else:
             return 0.0
 
